@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="StenoVLA-3D is a 3D-aware reasoning vision-language-action framework for autonomous navigation through gastrointestinal stenoses.">
+  <meta name="theme-color" content="#4b176d">
+  <title>StenoVLA-3D | 3D-Aware Reasoning VLA for Endoscopic Navigation</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%234b176d'/%3E%3Cpath d='M15 18h34v8H37v23H27V26H15z' fill='%23e5ad28'/%3E%3Ccircle cx='46' cy='46' r='8' fill='%23fff' opacity='.95'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="StenoVLA-3D home">
+        <span class="brand-mark" aria-hidden="true">S3</span>
+        <span>StenoVLA-3D</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#approach">Approach</a>
+        <a href="#results">Results</a>
+        <a href="#bibtex">BibTeX</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="venue-pill">Submitted to ICRA 2027</div>
+        <h1><span>StenoVLA-3D:</span> 3D-Aware Reasoning VLA for Navigation Through Gastrointestinal Stenoses</h1>
+
+        <p class="hero-summary">
+          Geometry-aware reasoning, dual-timescale memory, and navigation-controlled 3D reconstruction for autonomous robotic endoscopy.
+        </p>
+
+        <div class="authors" aria-label="Paper authors">
+          <span>Tamima Tabassum<sup>*</sup></span>
+          <span>Yiming Huang<sup>*</sup></span>
+          <span>Tianchun Wu</span>
+          <span>Changjing Liu</span>
+          <span>Zhiqing Tang</span>
+          <span>Chikit Ng</span>
+          <span>Beilei Cui</span>
+          <span>Liangjing Shao</span>
+          <span>Jiewen Lai</span>
+          <span>Hongliang Ren<sup>†</sup></span>
+        </div>
+        <p class="author-note"><sup>*</sup> Equal contribution &nbsp;&nbsp; <sup>†</sup> Corresponding author</p>
+
+        <div class="affiliation">
+          <span class="affiliation-logo-wrap">
+            <img src="assets/cuhk-logo.png" alt="The Chinese University of Hong Kong crest">
+          </span>
+          <span>The Chinese University of Hong Kong</span>
+        </div>
+
+        <div class="hero-actions" aria-label="Project links">
+          <a class="button button-primary" href="assets/paper.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6zM14 3v5h5M9 13h8M9 17h8"/></svg>
+            Paper
+          </a>
+          <a class="button button-secondary" href="#demo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 7 8 5-8 5z"/><circle cx="12" cy="12" r="10"/></svg>
+            Demo
+          </a>
+          <span class="button button-muted" aria-disabled="true" title="The permanent arXiv identifier is pending">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18 12 4l7 14M8 13h8"/></svg>
+            arXiv pending
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demo">
+      <div class="section-heading centered">
+        <p class="eyebrow">Project overview</p>
+        <h2>From monocular observations to safe navigation and reporting</h2>
+        <p>The model reasons over the current view and recent history, controls 3D reconstruction during traversal, and retains lesion evidence for the final report.</p>
+      </div>
+      <div class="video-frame">
+        <video controls preload="metadata" poster="assets/demo-poster.jpg">
+          <source src="assets/demo.mp4" type="video/mp4">
+          Your browser does not support HTML5 video. <a href="assets/demo.mp4">Download the demo</a>.
+        </video>
+      </div>
+    </section>
+
+    <section class="section insight-strip" aria-label="Key results">
+      <article>
+        <strong>95.2%</strong>
+        <span>Semantic accuracy</span>
+      </article>
+      <article>
+        <strong>83.4%</strong>
+        <span>Action accuracy</span>
+      </article>
+      <article>
+        <strong>88.9%</strong>
+        <span>Esophageal success</span>
+      </article>
+      <article>
+        <strong>77.8%</strong>
+        <span>Colonic success</span>
+      </article>
+    </section>
+
+    <section class="section text-section" id="abstract">
+      <div class="section-heading">
+        <p class="eyebrow">Abstract</p>
+        <h2>3D-aware reasoning for stenosis traversal</h2>
+      </div>
+      <div class="abstract-copy">
+        <p>
+          Autonomous endoscopic navigation requires a policy model to predict actions from texture-poor monocular observations, make safe control decisions, and retain evidence of lesions after they leave the field of view. Existing vision-language-action models primarily rely on visual appearance and short-term context, limiting geometric grounding and episode-level reporting.
+        </p>
+        <p>
+          StenoVLA-3D integrates point maps into the Cosmos-Reason 2 backbone through learned geometry-gated fusion and introduces a temporal state branch to model traversal progress. Its reasoning-and-action backbone predicts grounded reasoning with actions, while dedicated heads estimate stenosis shape and generate the final lesion report. We also introduce EndoCausal, an episode-level dataset with lesion annotations, actions, and temporally grounded reasoning.
+        </p>
+        <p>
+          On 40 held-out recorded test episodes, StenoVLA-3D reaches 95.2% semantic accuracy and 83.4% action accuracy. On a physical 3-DoF endoscope, it attains 88.9% and 77.8% task success in esophageal and colonic phantoms, respectively, across 36 trials per procedure.
+        </p>
+      </div>
+    </section>
+
+    <section class="section comparison-section">
+      <div class="section-heading centered">
+        <p class="eyebrow">Core idea</p>
+        <h2>Reasoning, geometry, and memory in one VLA</h2>
+        <p>Unlike direct-action and QA-based systems, StenoVLA-3D adds explicit numeric geometry, persistent lesion-event memory, and a shared reasoning-and-action head.</p>
+      </div>
+      <button class="figure-card" type="button" data-lightbox="assets/fig1-paradigms.jpg" aria-label="Enlarge comparison of VLA paradigms">
+        <img src="assets/fig1-paradigms.jpg" alt="Comparison of vanilla VLA, QA-based VLA, and the proposed 3D-aware reasoning VLA">
+      </button>
+    </section>
+
+    <section class="section approach-section" id="approach">
+      <div class="section-heading centered">
+        <p class="eyebrow">Approach</p>
+        <h2>A geometry-conditioned VLA with dual-timescale memory</h2>
+      </div>
+      <button class="figure-card architecture" type="button" data-lightbox="assets/fig2-architecture.png" aria-label="Enlarge StenoVLA-3D architecture">
+        <img src="assets/fig2-architecture.png" alt="Architecture of StenoVLA-3D showing memory, geometry, reasoning, and action branches">
+      </button>
+      <div class="feature-grid">
+        <article>
+          <span class="feature-index">01</span>
+          <h3>3D geometry fusion</h3>
+          <p>DA3 point maps are compressed into a geometry embedding and injected through a learned feature-wise gate without changing the pretrained token sequence.</p>
+        </article>
+        <article>
+          <span class="feature-index">02</span>
+          <h3>Temporal traversal memory</h3>
+          <p>Recent observations support lumen alignment and distinguish approach, entry, traversal, and completion across changing views.</p>
+        </article>
+        <article>
+          <span class="feature-index">03</span>
+          <h3>Persistent lesion memory</h3>
+          <p>Compact lesion-event evidence is retained after lesions leave the field of view and is reused for episode-level reporting.</p>
+        </article>
+        <article>
+          <span class="feature-index">04</span>
+          <h3>Structured control</h3>
+          <p>The shared backbone produces reasoning and discrete 3-DoF actions, while navigation state gates asynchronous reconstruction.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section qualitative-section">
+      <div class="section-heading">
+        <p class="eyebrow">Qualitative behavior</p>
+        <h2>Navigation across the complete stenosis workflow</h2>
+        <p>Representative esophagus and colon sequences show lesion detection, contact avoidance, stenosis alignment, reconstruction-gated entry, traversal, and distal-end stopping.</p>
+      </div>
+      <button class="figure-card" type="button" data-lightbox="assets/fig3-qualitative.jpg" aria-label="Enlarge qualitative navigation traces">
+        <img src="assets/fig3-qualitative.jpg" alt="Qualitative reasoning traces for esophageal and colonic phantom navigation">
+      </button>
+    </section>
+
+    <section class="section results-section" id="results">
+      <div class="section-heading centered">
+        <p class="eyebrow">Results</p>
+        <h2>Strong open-loop prediction and physical navigation</h2>
+        <p>Semantic and action scores use 40 recorded test episodes. Esophageal and colonic success rates use 36 physical trials per procedure.</p>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Performance comparison" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Semantic</th>
+              <th>Action</th>
+              <th>Esophageal</th>
+              <th>Colonic</th>
+              <th>Average</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>EndoVLA*</td><td>80.2</td><td>67.3</td><td>50.0</td><td>55.6</td><td>63.3</td></tr>
+            <tr><td>π0.5</td><td>—</td><td>55.2</td><td>33.3</td><td>22.2</td><td>36.9</td></tr>
+            <tr><td>Steno-DAC</td><td>92.1</td><td><strong>84.7</strong></td><td>63.9</td><td>52.8</td><td>73.4</td></tr>
+            <tr><td>Steno-VGGT</td><td>88.8</td><td>81.0</td><td>58.3</td><td>66.7</td><td>73.7</td></tr>
+            <tr class="highlight"><td>StenoVLA-3D</td><td><strong>95.2</strong></td><td>83.4</td><td><strong>88.9</strong></td><td><strong>77.8</strong></td><td><strong>86.3</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">* EndoVLA is adapted to a 3-DoF discrete action space for comparison. Values are percentages.</p>
+
+      <div class="result-cards">
+        <article>
+          <span class="result-value">+22.6</span>
+          <h3>Average points over EndoVLA*</h3>
+          <p>StenoVLA-3D improves the overall average from 63.3% to 86.3%.</p>
+        </article>
+        <article>
+          <span class="result-value">400</span>
+          <h3>Phantom sequences</h3>
+          <p>EndoCausal links observations with lesion labels, navigation actions, reconstruction control, and reasoning.</p>
+        </article>
+        <article>
+          <span class="result-value">3-DoF</span>
+          <h3>Physical endoscope control</h3>
+          <p>Yaw, pitch, and forward-backward translation support alignment and complete stenosis traversal.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section robustness-section">
+      <div class="section-heading centered">
+        <p class="eyebrow">Cross-domain evaluation</p>
+        <h2>Behavior under unseen visual shifts</h2>
+        <p>Qualitative tests examine texture, viewpoint, reflection, and deformation shifts without additional fine-tuning.</p>
+      </div>
+      <button class="figure-card" type="button" data-lightbox="assets/fig4-robustness.jpg" aria-label="Enlarge cross-domain qualitative results">
+        <img src="assets/fig4-robustness.jpg" alt="Zero-shot qualitative results under texture, viewpoint, reflection, and deformation shifts">
+      </button>
+    </section>
+
+    <section class="section bibtex-section" id="bibtex">
+      <div class="section-heading">
+        <p class="eyebrow">Citation</p>
+        <h2>BibTeX</h2>
+        <p>The permanent arXiv identifier can be added when the submission is announced.</p>
+      </div>
+      <div class="code-shell">
+        <button class="copy-button" type="button" data-copy-target="bibtex-code">Copy</button>
+        <pre><code id="bibtex-code">@misc{tabassum2026stenovla3d,
+  title  = {StenoVLA-3D: 3D-Aware Reasoning VLA for Navigation Through Gastrointestinal Stenoses},
+  author = {Tamima Tabassum and Yiming Huang and Tianchun Wu and Changjing Liu and Zhiqing Tang and Chikit Ng and Beilei Cui and Liangjing Shao and Jiewen Lai and Hongliang Ren},
+  year   = {2026},
+  note   = {Submitted to ICRA 2027}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>StenoVLA-3D</strong>
+      <span>The Chinese University of Hong Kong</span>
+    </div>
+    <p>Research project page · 2026</p>
+  </footer>
+
+  <dialog class="lightbox" aria-label="Enlarged figure">
+    <button class="lightbox-close" type="button" aria-label="Close enlarged figure">×</button>
+    <img src="" alt="">
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
